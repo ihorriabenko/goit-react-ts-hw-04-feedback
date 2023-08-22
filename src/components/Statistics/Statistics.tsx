@@ -11,14 +11,16 @@ const Statistics: React.FC<StatisticsProps> = ({
   feedback: { good, neutral, bad },
   countPositiveFeedback,
 }): JSX.Element => {
-  const positiveFeedback = countPositiveFeedback();
+  const total = good + neutral + bad;
 
   return (
     <Section type='h2' title='Statistics'>
-      {positiveFeedback === 0 ? (
+      {total === 0 ? (
+        <ul className='list'>
         <Notification text={'There is no feedback'} />
+        </ul>
       ) : (
-        <ul>
+        <ul className='list'>
           <li>
             <p>Good: {good}</p>
           </li>
@@ -32,7 +34,7 @@ const Statistics: React.FC<StatisticsProps> = ({
             <p>Total: {good + neutral + bad}</p>
           </li>
           <li>
-            <p>Positive feedback: {positiveFeedback} %</p>
+            <p>Positive feedback: {countPositiveFeedback()} %</p>
           </li>
         </ul>
       )}

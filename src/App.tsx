@@ -25,13 +25,13 @@ const App: React.FC = (): JSX.Element => {
   };
 
   return (
-    <>
+    <div className='app'>
       <Feedback feedback={feedback} feedbackCounter={feedbackCounter} />
       <Statistics
         feedback={feedback}
         countPositiveFeedback={countPositiveFeedback}
       />
-    </>
+    </div>
   );
 };
 
