@@ -2,7 +2,7 @@
   "name": "goit-react-ts-hw-04-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/iryabenkoff/goit-react-ts-hw-04-feedback",
+  "homepage": "https://iryabenkoff.github.io/goit-react-ts-hw-04-feedback",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
