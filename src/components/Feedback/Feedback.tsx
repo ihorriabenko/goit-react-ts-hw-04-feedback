@@ -1,25 +1,26 @@
+import { FB } from '../../types/feedback';
 import Section from '../Section/Section';
 
 interface FeedbackProps {
-  countFeedback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  feedback: FB;
+  feedbackCounter: (btnContent: keyof FB) => void;
 }
 
 const Feedback: React.FC<FeedbackProps> = ({
-  countFeedback,
+  feedback,
+  feedbackCounter,
 }): JSX.Element => {
+  const elements = Object.keys(feedback).map((el) => (
+    <li key={el}>
+      <button type='button' onClick={() => feedbackCounter(el as keyof FB)}>
+        {el}
+      </button>
+    </li>
+  ));
+
   return (
-    <Section type='h2' title='Please leave feedback'>
-      <ul>
-        <li>
-          <button onClick={countFeedback}>Good</button>
-        </li>
-        <li>
-          <button onClick={countFeedback}>Neutral</button>
-        </li>
-        <li>
-          <button onClick={countFeedback}>Bad</button>
-        </li>
-      </ul>
+    <Section type='h2' title='Statistics'>
+      <ul>{elements}</ul>
     </Section>
   );
 };

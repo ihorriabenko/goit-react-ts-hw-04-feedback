@@ -8,49 +8,25 @@ const App: React.FC = (): JSX.Element => {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
   });
 
-  const increaseCounter = (btnContent: keyof FB) => {
+  const feedbackCounter = (btnContent: keyof FB): void => {
     setFeedback((prev) => ({
       ...prev,
       [btnContent]: prev[btnContent] + 1,
-      total: prev.total + 1,
     }));
   };
 
-  const countFeedback = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    const button = e.target as HTMLButtonElement;
-
-    switch (button.innerHTML) {
-      case 'Good':
-        increaseCounter('good');
-        break;
-
-      case 'Neutral':
-        increaseCounter('neutral');
-        break;
-
-      case 'Bad':
-        increaseCounter('bad');
-        break;
-
-      default:
-        break;
-    }
-  };
-
   const countPositiveFeedback = (): number => {
-    return Math.round((feedback.good / feedback.total) * 100) > 0
-      ? Math.round((feedback.good / feedback.total) * 100)
-      : 0;
+    const { good, neutral, bad } = feedback;
+    const total = good + neutral + bad;
+
+    return (good / total) * 100 > 0 ? Math.round((good / total) * 100) : 0;
   };
 
   return (
     <>
-      <Feedback
-        countFeedback={countFeedback}
-      />
+      <Feedback feedback={feedback} feedbackCounter={feedbackCounter} />
       <Statistics
         feedback={feedback}
         countPositiveFeedback={countPositiveFeedback}
